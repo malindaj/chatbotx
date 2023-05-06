@@ -13,6 +13,10 @@ const nextConfig = {
 
     return config;
   },
+  env: {
+    // Add any logic you want here, returning `true` to enable password protect.
+    PASSWORD_PROTECT: process.env.ENABLE_PASSWORD_PROTECT === true,
+  }
 };
 
 module.exports = nextConfig;

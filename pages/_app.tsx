@@ -1,5 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { withPasswordProtect } from "next-password-protect";
 
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
@@ -22,4 +23,13 @@ function App({ Component, pageProps }: AppProps<{}>) {
   );
 }
 
-export default appWithTranslation(App);
+// Before: export default App;
+export default process.env.PASSWORD_PROTECT
+  ? withPasswordProtect(App, {
+    // Options go here (optional)
+    loginApiUrl: "/login",
+  })
+  : appWithTranslation(App);
+
+
+//export default ;

@@ -319,7 +319,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
     throttledScrollDown();
     selectedConversation &&
       setCurrentMessage(
-        selectedConversation.messages[selectedConversation.messages.length - 2],
+        selectedConversation?.messages[selectedConversation.messages?.length - 2],
       );
   }, [selectedConversation, throttledScrollDown]);
 
@@ -396,7 +396,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             ref={chatContainerRef}
             onScroll={handleScroll}
           >
-            {selectedConversation?.messages.length === 0 ? (
+            {selectedConversation?.messages?.length === 0 ? (
               <>
                 <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px]">
                   <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
@@ -440,7 +440,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             ) : (
               <>
                 <div className="sticky top-0 z-10 flex justify-center border border-b-neutral-300 bg-neutral-100 py-2 text-sm text-neutral-500 dark:border-none dark:bg-[#444654] dark:text-neutral-200">
-                  {t('Model')}: {selectedConversation?.model.name} | {t('Temp')}
+                  {t('Model')}: {selectedConversation?.model?.name} | {t('Temp')}
                   : {selectedConversation?.temperature} |
                   <button
                     className="ml-2 cursor-pointer hover:opacity-50"
@@ -463,7 +463,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                   </div>
                 )}
 
-                {selectedConversation?.messages.map((message, index) => (
+                {selectedConversation?.messages?.map((message, index) => (
                   <MemoizedChatMessage
                     key={index}
                     message={message}
